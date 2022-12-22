@@ -1,9 +1,9 @@
 
 # Liste der Quelldateien. Diese Liste anpassen, wenn Sie Dateien zum Projekt hinzufügen/entfernen.
-SOURCES := main.c graphic.c engine.c config.c gfx.c ui.c
+SOURCES := main.c graphic.c engine.c config.c gfx.c ui.c newdata.c
 
 # Liste der zugehörigen Include Dateien. Diese Liste anpassen, wenn Sie Dateien zum Projekt hinzufügen/entfernen.
-INCLUDES := graphic.h engine.h config.h gfx.h ui.h
+INCLUDES := graphic.h engine.h config.h gfx.h ui.h newdata.h
 
 #
 # nachfolgende Teile des Makefiles in der Regel benötigen keine Änderungen für den Praktikumsversuch:

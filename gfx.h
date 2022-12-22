@@ -3,4 +3,8 @@
 
 // GFX Schnittstelle
 
+#include"gfx.c"
+
+void ausdruck(struct Laufzeitdaten x);
+
 #endif //GFX_HH

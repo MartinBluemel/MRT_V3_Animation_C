@@ -1,120 +1,61 @@
-/* BOF MAIN_C
- Praktikumsversuch: Einführung in die Sprache C
- Haupt-Programm
- */
+#include<stdio.h>
+#include<stdlib.h>
 
-#include "graphic.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-// Forwarddeklaration der später definierten Hilfsfunktionen:
-void goodbye_msg(void);
-static void init_exit(void);
+// Schnittstellen zu (eigenen) Unterfunktionen
+#include"newdata.h"   // Definition Datentyp "Laufzeitdaten" (Aufgabe 4.1)
+#include"config.h"    // Einlesen der Konfigurationsdatei (Aufgabe 4.2): einlesen()
+#include"gfx.h"       // Grafische Darstellung (Aufgabe 4.4): init_pic(), ausdruck()
+#include"engine.h"    // Berechnung der Animationsschritte (Aufgabe 4.3): calculate_next_pic()
+#include"ui.h"        // Nutzereingaben (Aufgabe 4.5): pause()
 
 
-/* Demonstration zur Nutzung der vorgegebenen Grafikfunktionen */
-void farb_demonstration(void)
-{
-	int dialog_showed =0;
-	
-	// Erzeuge eine virtuelle Leinwand.
-	// (Anmerkung: willkürliche Dimmensionen zum Zweck der Demonstration)
-	// auf der X-Achse von 0 bis 100 (rationaler Zahlenbereich)
-	// auf der Y-Achse von 0 bis 64  (rationaler Zahlenbereich)
-	// skaliere alle diese Koordinaten auf eine Fläche von 75 x 32 Pixel
-        grafik_create_paint_area(0, 100, 0, 64, 75, 32);
-	//
-	// Sinnvoll für den Animations Praktikumsversuch:
-	// grafik_create_paint_area(0, x_max, 0, y_max, x_max, y_max);
-	
-	while (1){
-		
-		// Der Bildschirm muss zum Setzen von Pixeln gesperrt sein.
-		grafik_lock_for_painting();
+void main(void)  {
 
-		// Zeichne jeweils eine Linie in einer eigenen Farbe.
-		int cn=0;
-		for(int j=0; j < 64; j=j+2){                    // Zeile (y)
-			cn= (j / 2) % 32;                       // Farbe auswählen
-			for(int i=0; i < 100 ; i=i+1){          // Spalte (x)
-				grafik_paint_point(i, j, cn);   // Pixel zeichnen
-			}
-		}
+    // Konfigurationsdatei einlesen (in config.c, Aufgabe: 4.2)
+    // Rueckgabe der Struktur "daten" mit den noetigen Informationen
+    // Rueckgabe des Animationspuffers mit Raendern
+    struct Laufzeitdaten {
+      int X, Y, schritt, gesamtschritte; // X: Spalte, Y: Zeile
+      float delay; // Pause zwischen den Schritten
+      char* puffer;
+    };
 
-		// Alle Änderungen auf dem Bildschirm ausgeben.
-		grafik_unlock_and_show();
+    struct Laufzeitdaten daten;
+    
+    daten = einlesen(); 
 
-		
-		// Blockierender Dialog, einmalig anzeigen.
-		// Solange der Dialog angezeigt wird, wird die Grafik nicht neu gezeichnet.
-		if(dialog_showed == 0) {
-			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-						 "MRT 1 - V3 - Information",
-						 "MRT 1 - V3 - Farbdemonstration\n\n"
-						 "Nach dem Schließen dieses Dialogs,\n"
-						 "kann die Taste 'q' verwendet werden "
-						 "um das Programm zu beenden.\n",
-						 NULL);
-			dialog_showed = 1;
-
-			// Alle bisherigen Tastatureingaben verwerfen.
-			while (grafik_user_input(10) > Fehler);
-		}
-
-		
-		// Getätigte Nutzereingaben verarbeiten.
-		// 100 Millisekunden auf Nutzereingabe warten,
-		// dann mit Programmablauf fortfahren.
-		switch( grafik_user_input(100) ){
-		case Beenden:
-			// Auf die Taste `q` und "Fenster schließen" reagieren.
-			return;
-		case Pause:
-		case Schritt:
-		default:
-			// Alle anderen Nutzeraktionen ignorieren.
-			continue;
-		}
-	} // Ende while(1)
-}
+    // print: daten.X = 100
+    // print: daten.delay = 0.1
 
 
-/* Hauptprogramm, Einstiegspunkt für eigene Programmierlösung.
- * Kommentarzeichen vor Funktionsaufrufen entfernen und
- * Programmrahmen ausfüllen.
- */
-int main (void)
-{
-	/* registireren einer Hilfsfunktion, welche bei jedem Programmende einen Text ausgibt. */
-        init_exit();
-	
-        /* Initialisierung des Grafikausgabefensters
-	 Hinweis: das Fenster ist immer 800x600 Pixel groß */
-        grafik_init_window();
+    // Leinwand initialisieren (in gfx.c, Aufgabe 4.4):
+    // init_pic(daten);
 
-	/* eine Demo um die Grafikfunktionen zu demonstrieren */
-	farb_demonstration();
+    // Schleife:
+        // Naechsten Animationsschritt berechnen (3.3, in engine.c):
+        calculate_next_pic(daten);
 
-         /* Aufräumen und Freigeben der benutzten Grafikressourcen */
-        grafik_close_window();
-        
-        return 0;
-}
+        // Bild darstellen (3.4, in gfx.c):
+        // 
+
+        // Schleifenabbruch bei:
+        // - Taste q --> Funktion in ui.c
+        // - Gesamtschritte erreicht
+        // - Pausieren --> Funktion in ui.c
+
+        // Pause zwischen einzelnen Bildern
+
+    // }
+
+    // Puffer deallokieren
+    free(daten.puffer);
+};
 
 
-// -- Hilfsfunktionen ---
-static void init_exit(void)
-{
-        if(atexit(goodbye_msg)){
-                fprintf(stderr, "Fehler bei Registrierung der Exitfunktion\n");
-                exit(-1);
-        }
-}
+// Wie genau soll Animation am Ende aussehen? Farbpunkte? (vllt mal Dustin fragen)
 
-void goodbye_msg(void)
-{
-        printf("MRT1, V3, Programm beendet.\n");
-}
-
-/* EOF MAIN_C */
+// 1) Einlesen:
+// 2) Ausgabe: Leinwand initialisieren, Ausgabe programmieren // Theo
+// 3) Nächesten Schritt berechnen // Martin
+// 4) Schleife in Hauptprogramm die nächsten Schritt berechnet, Bild darstellt und die Befehle von
+//    ui.c (4.5) bearbeitet // 

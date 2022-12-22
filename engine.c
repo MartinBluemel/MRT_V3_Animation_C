@@ -3,7 +3,13 @@
  * Berechnungs-Modul
  */
 
-#include "engine.h"
+#include"engine.h"
+
+#include<stdio.h>
+
+// für Dantentyp-Laufzeitdaten:
+#include"newdata.h"
+
 
 // Engine Quellcode
-//hello git hub
+
