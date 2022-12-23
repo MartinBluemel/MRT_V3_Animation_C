@@ -4,8 +4,8 @@
 #include"engine.c"
 
 
-
 // Engine Schnittstelle
+struct Laufzeitdaten;
 
 
 #endif //ENGINE_HH

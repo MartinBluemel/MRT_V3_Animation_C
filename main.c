@@ -14,10 +14,13 @@ void main(void)  {
     // Konfigurationsdatei einlesen (in config.c, Aufgabe: 4.2)
     // Rueckgabe der Struktur "daten" mit den noetigen Informationen
     // Rueckgabe des Animationspuffers mit Raendern
-    struct Laufzeitdaten {
+
+	/*struct Laufzeitdaten {
       int X, Y, schritt, gesamtschritte; // X: Spalte, Y: Zeile
       float delay; // Pause zwischen den Schritten
       char* puffer;
+    */
+
     };
 
     struct Laufzeitdaten daten;
