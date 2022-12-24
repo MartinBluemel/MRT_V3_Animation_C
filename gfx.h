@@ -7,6 +7,6 @@
 
 #include"newdata.h"
 
-void ausdruck(struct Laufzeitdaten x);
+//void ausdruck(struct Laufzeitdaten x);
 
 #endif //GFX_HH

@@ -20,9 +20,10 @@ int funadd(int x, int y){
 }
 
 //Funktion um den nächsten Schrtitt zu berechnen
-/*
+
 extern struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
-	//printf("%c", caldata.puffer[0]);
+	printf("%c", caldata.puffer[0]);
+	caldata.puffer[0] = 't';
 	//int screencounter;
 	//screencounter = (caldata.Y+2)*(2+caldata.X);//Variabele zum Puffer durchgehen
 
@@ -30,4 +31,4 @@ extern struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 
 	return caldata;
 }
-//*/
+

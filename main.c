@@ -28,7 +28,7 @@ int main(int argc, char *argv[])  {
     daten = einlesen();
 
     int out;
-    out = funadd(3, 4);
+    out = funadd(3, 5);
     printf("%d", out);
 
 
@@ -43,7 +43,8 @@ int main(int argc, char *argv[])  {
     // Schleife:
         // Naechsten Animationsschritt berechnen (3.3, in engine.c):
     	//läuft noch nicht
-        //daten = calculate_next_pic(daten);
+        daten = calculate_next_pic(daten);
+        printf("%c", daten.puffer[0]);
 
         // Bild darstellen (3.4, in gfx.c):
         // 
