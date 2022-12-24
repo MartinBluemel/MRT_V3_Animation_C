@@ -4,10 +4,15 @@
  */
 
 #include"engine.h"
-
+// für fopen, getline, fscanf, fclose:
 #include<stdio.h>
-#include<string.h>// für strncmp und memset:
-#include<stdlib.h>// für malloc, calloc und atoi:
+
+// für strncmp und memset:
+#include<string.h>
+
+// für malloc, calloc und atoi:
+#include<stdlib.h>
+
 #include"newdata.h"// für Dantentyp-Laufzeitdaten:
 
 

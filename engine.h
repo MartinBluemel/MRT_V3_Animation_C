@@ -5,7 +5,7 @@
 
 
 // Engine Schnittstelle
-extern struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata);
+struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten);
 
 
 #endif //ENGINE_HH

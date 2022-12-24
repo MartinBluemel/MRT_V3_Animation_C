@@ -11,7 +11,7 @@
 
 
 //eventuell wieder erstzen mit void main(void)
-int main(void)  {
+int main(int argc, char *argv[])  {
 
     // Konfigurationsdatei einlesen (in config.c, Aufgabe: 4.2)
     // Rueckgabe der Struktur "daten" mit den noetigen Informationen
