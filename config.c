@@ -18,7 +18,7 @@
 #include"newdata.h"
 	 
 // Config und Dateiarbeit Funktionen
-
+/*
 struct Laufzeitdaten einlesen() {
     struct Laufzeitdaten probe;
     probe.X=4;
@@ -32,3 +32,4 @@ struct Laufzeitdaten einlesen() {
     }
     return probe;
 };
+*/

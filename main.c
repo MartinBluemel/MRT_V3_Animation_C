@@ -27,6 +27,11 @@ int main(int argc, char *argv[])  {
     
     daten = einlesen();
 
+    int out;
+    out = funadd(3, 4);
+    printf("%d", out);
+
+
 
     // print: daten.X = 100
     // print: daten.delay = 0.1
@@ -38,7 +43,7 @@ int main(int argc, char *argv[])  {
     // Schleife:
         // Naechsten Animationsschritt berechnen (3.3, in engine.c):
     	//läuft noch nicht
-        daten = calculate_next_pic(daten);
+        //daten = calculate_next_pic(daten);
 
         // Bild darstellen (3.4, in gfx.c):
         // 

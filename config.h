@@ -3,8 +3,8 @@
 
 // Config Schnittstelle
 
-#include"config.c"
-
+//#include"config.c"
+#include"newdata.h"
 // Config und Dateiarbeit Funktionen
 
 struct Laufzeitdaten einlesen();

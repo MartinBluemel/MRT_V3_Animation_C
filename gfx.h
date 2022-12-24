@@ -3,7 +3,9 @@
 
 // GFX Schnittstelle
 
-#include"gfx.c"
+//#include"gfx.c"
+
+#include"newdata.h"
 
 void ausdruck(struct Laufzeitdaten x);
 
