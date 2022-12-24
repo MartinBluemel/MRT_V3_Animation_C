@@ -9,7 +9,9 @@
 #include"ui.h"        // Nutzereingaben (Aufgabe 4.5): pause()
 
 
-void main(void)  {
+
+//eventuell wieder erstzen mit void main(void)
+int main(void)  {
 
     // Konfigurationsdatei einlesen (in config.c, Aufgabe: 4.2)
     // Rueckgabe der Struktur "daten" mit den noetigen Informationen
@@ -21,11 +23,10 @@ void main(void)  {
       char* puffer;
     */
 
-    };
-
     struct Laufzeitdaten daten;
     
-    daten = einlesen(); 
+    daten = einlesen();
+
 
     // print: daten.X = 100
     // print: daten.delay = 0.1
@@ -36,7 +37,8 @@ void main(void)  {
 
     // Schleife:
         // Naechsten Animationsschritt berechnen (3.3, in engine.c):
-        calculate_next_pic(daten);
+    	//läuft noch nicht
+        daten = calculate_next_pic(daten);
 
         // Bild darstellen (3.4, in gfx.c):
         // 
@@ -52,6 +54,7 @@ void main(void)  {
 
     // Puffer deallokieren
     free(daten.puffer);
+    return 0;
 };
 
 

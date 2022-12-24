@@ -14,13 +14,13 @@
 // Engine Quellcode
 
 //Funktion um den nächsten Schrtitt zu berechnen
-void calculate_next_pic(struct Laufzeitdaten caldata){
+struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 
 	printf("%c", caldata.puffer[0]);
-	int screencounter = (caldata.Y+2)*(2+caldata.X)//Variabele zum Puffer durchgehen
+	int screencounter = (caldata.Y+2)*(2+caldata.X);//Variabele zum Puffer durchgehen
 
-	for (int i=0; i<screencounter; i++){
-		for (int j=0; j<caldata.X){
+	for(int i=0; i<screencounter; i++){
+		for(int j=0; j<caldata.X; j++){
 
 		}
 
