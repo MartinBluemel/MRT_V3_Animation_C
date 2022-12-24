@@ -27,7 +27,7 @@ $(BINARY): $(OBJS)
 
 # erzeuge die Objektdateien aus den Quelldateien
 # der Einfachheit halber, kompiliere bei jeder Änderung in den Headerfiles
-.c.o: $(INCLUDES)
+ .c.o: $(INCLUDES)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<
 
 # gewünschtes Ziel, wenn make ohne Kommandozeilenparameter aufgerufen wird

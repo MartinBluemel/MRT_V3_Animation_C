@@ -3,11 +3,11 @@
 
 // Newdata Schnittstelle
 
- typedef struct Laufzeitdaten {
+ struct Laufzeitdaten {
     int X, Y, schritt, gesamtschritte; // X: Spalte, Y: Zeile
     float delay; // Pause zwischen den Schritten
     char* puffer;
-}laufzeitdaten;
+};
 
 // Darstellung des Puffers (Zahlen sind Elemente des Puffers):
 //   __|-------X-------|_
