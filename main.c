@@ -17,23 +17,15 @@ int main(int argc, char *argv[])  {
     // Rueckgabe der Struktur "daten" mit den noetigen Informationen
     // Rueckgabe des Animationspuffers mit Raendern
 
+	/*struct Laufzeitdaten {
+      int X, Y, schritt, gesamtschritte; // X: Spalte, Y: Zeile
+      float delay; // Pause zwischen den Schritten
+      char* puffer;
+    */
+
     struct Laufzeitdaten daten;
     
-    daten = einlesen("settings-1.txt"); 
-
-    printf("Eingelesene Daten: \n");
-    printf("daten.X (Spalten): %d\n", daten.X);
-    printf("daten.Y (Zeilen): %d\n", daten.Y);
-    printf("daten.schritt: %d\n", daten.schritt);
-    printf("daten.gesamtschritte: %d\n", daten.gesamtschritte);
-    printf("daten.delay: %f\n", daten.delay);
-
-    for (int i=0; i<=(daten.Y+1); i++) {
-        for (int j=0; j<=(daten.X+1); j++) {
-            printf("%c", daten.puffer[j+i*(daten.X+2)]);
-        }
-        printf("\n");
-    }
+    daten = einlesen();
 
     int out;
     out = funadd(3, 5);
