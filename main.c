@@ -42,7 +42,7 @@ int main(int argc, char *argv[])  {
 
     // Schleife:
         // Naechsten Animationsschritt berechnen (3.3, in engine.c):
-    	//läuft noch nicht
+    	//läuft, jetzt läufts
         daten = calculate_next_pic(daten);
         printf("%c", daten.puffer[0]);
 
