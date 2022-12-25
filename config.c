@@ -21,7 +21,7 @@
 
 struct Laufzeitdaten einlesen() {
     struct Laufzeitdaten probe;
-    probe.X=4;
+    probe.X=44;
     probe.Y=4;
     probe.gesamtschritte=1; // damit Schleife nicht ewig läuft
     probe.puffer = malloc((probe.X*probe.Y) * sizeof(char));
