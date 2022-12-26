@@ -40,9 +40,12 @@ int main(int argc, char *argv[])  {
         printf("\n");
     };
 
+    /*
+     *nur zum Testen
+     */
     int out;
     out = funadd(3, 5);
-    printf("%d", out);
+    printf("%d\n", out);
 
 
 
@@ -57,7 +60,7 @@ int main(int argc, char *argv[])  {
         // Naechsten Animationsschritt berechnen (3.3, in engine.c):
     	//läuft, jetzt läufts
         daten = calculate_next_pic(daten);
-        printf("%c", daten.puffer[0]);
+        printf("%c\n", daten.puffer[0]);
 
         // Bild darstellen (3.4, in gfx.c):
         // 
