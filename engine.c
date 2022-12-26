@@ -13,9 +13,7 @@
 int funadd(int x, int y);
 // Engine Quellcode
 
-
-
-//hallo
+//hallo there
 
 int funadd(int x, int y){
 	int a;
