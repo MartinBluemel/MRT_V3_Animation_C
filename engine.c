@@ -19,8 +19,6 @@ int funadd(int x, int y){
 	return a;
 }
 
-//Hallo
-
 //Funktion um den nächsten Schrtitt zu berechnen
 
 extern struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
