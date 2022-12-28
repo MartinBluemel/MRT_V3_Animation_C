@@ -31,6 +31,8 @@ struct Laufzeitdaten nummerneinlesen();
 struct eingelesenerpuffer puffereinlesen();
 char* zentrieren();
 
+// Hallo! adsfasfd
+
 
 // Einlese-Funktion welche später im Main aufgerufen wird:
 struct Laufzeitdaten einlesen(const char* filename) {
