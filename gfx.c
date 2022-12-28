@@ -22,5 +22,5 @@ void ausdruck(struct Laufzeitdaten daten) {
             printf("%c ", daten.puffer[i*daten.Y+j]);
         }
         printf("\n");
-    };
+    };// Theo war hier
 };
