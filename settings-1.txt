@@ -1,5 +1,5 @@
-Zeilen: 5
-Spalten: 16
+Zeilen: 9
+Spalten: 20
 Schritt: 0
 Schritte: 15
 Pause: 0.1 s

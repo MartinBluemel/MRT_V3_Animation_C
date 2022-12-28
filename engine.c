@@ -10,62 +10,188 @@
 
 #include"newdata.h"// für Dantentyp-Laufzeitdaten:
 
-int funadd(int x, int y);
+
 // Engine Quellcode
-
-//hallo there
-
-int funadd(int x, int y){
-	int a;
-	a = x + y;
-	return a;
-}
 
 //Funktion um den nächsten Schrtitt zu berechnen
 
-extern struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
+struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 	//Rückgabevariable vom Typ Laufzeitdaten
 	struct Laufzeitdaten nextdata;
+	nextdata.X = caldata.X;
+	nextdata.Y = caldata.Y;
+	nextdata.schritt = caldata.schritt;
+	nextdata.gesamtschritte = caldata.gesamtschritte;
+	nextdata.delay = caldata.delay;
+	nextdata.puffer = caldata.puffer;
 
-	//test
-	printf("%c\n", caldata.puffer[0]);
-	caldata.puffer[0] = 't';
+	//Berechnungsvariable
+	struct Laufzeitdaten betdata;
+	betdata.X = caldata.X+2;
+	betdata.Y = caldata.Y+2;
+	betdata.schritt = caldata.schritt;
+	betdata.gesamtschritte = caldata.gesamtschritte;
+	betdata.delay = caldata.delay;
+	betdata.puffer = malloc(((betdata.X+2)*(betdata.Y+2))*sizeof(char));
 
-	/*Berechnung
-	int screencounter;
-	int screencounter = (caldata.Y+2)*(2+caldata.X);//Variabele zum Puffer durchgehen
+	//Puffer nochmal um einen Rand '.' erweitern
+	for (int i=0; i<=(betdata.Y+1); i++) {
+		        for (int j=0; j<=(betdata.X+1); j++) {
+		        	betdata.puffer[j+i*(betdata.X+2)] = '.';
+		        }
 
-	for(int i=0; i<screencounter; i++){
-		for(int j=0; j<caldata.X; j++){
-
-		};
-
-
-
-	};
-	//*/
+		    };
 
 	/*Visualisierung
-	int v1 = ((caldata.X+2)*(caldata.Y+2));
-	int k = (caldata.X+2);
-	int x = 0;
-	for(int i=0; i<v1; i++){
+	for (int i=0; i<=(betdata.Y+1); i++) {
+			        for (int j=0; j<=(betdata.X+1); j++) {
+			            printf("%c", betdata.puffer[j+i*(betdata.X+2)]);
+			        }
+			        printf("\n");
+			    };
 
-		printf("%c", caldata.puffer[i]);
-		x = x+1;
+	 printf("\n");
+	 printf("\n");
+	 //*/
 
-		while (x=k){
-			printf("\n");
-			x=0;
-		}
+	 //übergebenen Puffer in erweiterten einfügen
+	 for (int i=0; i<=(nextdata.Y+1); i++) {
+		        for (int j=0; j<=(nextdata.X+1); j++) {
+		        	betdata.puffer[(j+1)+(i+1)*(betdata.X+2)] = nextdata.puffer[j+i*(caldata.X+2)];
+		        }
+
+		    };
+
+	 /*Visualisierung
+	 for (int i=0; i<=(betdata.Y+1); i++) {
+	 			        for (int j=0; j<=(betdata.X+1); j++) {
+	 			            printf("%c", betdata.puffer[j+i*(betdata.X+2)]);
+	 			        }
+	 			        printf("\n");
+	 			    };
+
+	 printf("\n");
+	 printf("\n");
+	 */
+
+	//*Berechnung
+	int k = 0;
+
+	for (int i=1; i<=(betdata.Y); i++) {
+		        for (int j=1; j<=(betdata.X); j++) {
+		        	k = 0;
+		        	//wenn Pixel leer
+		        	if(betdata.puffer[j+i*(betdata.X+2)]=='.'){
+
+		        		//Analyse der umliegenden Felder
+		        		//Ecke oben links
+		        		if(betdata.puffer[(j+i*(betdata.X+2))-(betdata.X+3)]=='x'){
+		        			k= k+1;
+		        		}
+		        		//oben Mitte
+		        		if(betdata.puffer[(j+i*(betdata.X+2))-(betdata.X+2)]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Ecke oben rechts
+		        		if(betdata.puffer[(j+i*(betdata.X+2))-(betdata.X+1)]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Mitte links
+		        		if(betdata.puffer[(j+i*(betdata.X+2))-1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Mitte rechts
+		        		if(betdata.puffer[(j+i*(betdata.X+2))+1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Ecke unten links
+		        		if(betdata.puffer[(j+i*(betdata.X+2))+(betdata.X+2)-1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//unten Mitte
+		        		if(betdata.puffer[(j+i*(betdata.X+2))+(betdata.X+2)]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Ecke unten rechts
+		        		if(betdata.puffer[(j+i*(betdata.X+2))+(betdata.X+2)+1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Analyseende
+
+
+		        		//freier Pixel mit exakt 3 belegten Nachbarpixeln wird zu belegten Pixel
+		        		if (k == 3){
+		        			nextdata.puffer[(j-1)+(i-1)*(caldata.X+2)] = 'x';
+		        			k = 0;
+		        		}
+		        	}
+		        	//alle Zeichen die kein Punkt sind werden als x gesehen
+		        	else {
+		        		///*
+		        		//Analyse der umliegenden Felder
+		        		//Ecke oben links
+		        		if(betdata.puffer[(j+i*(betdata.X+2))-(betdata.X+2)-1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//oben Mitte
+		        		if(betdata.puffer[(j+i*(betdata.X+2))-(betdata.X+2)]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Ecke oben rechts
+		        		if(betdata.puffer[(j+i*(betdata.X+2))-(betdata.X+2)+1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Mitte links
+		        		if(betdata.puffer[(j+i*(betdata.X+2))-1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Mitte rechts
+		        		if(betdata.puffer[(j+i*(betdata.X+2))+1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Ecke unten links
+		        		if(betdata.puffer[(j+i*(betdata.X+2))+(betdata.X+2)-1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//unten Mitte
+		        		if(betdata.puffer[(j+i*(betdata.X+2))+(betdata.X+2)]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Ecke unten rechts
+		        		if(betdata.puffer[(j+i*(betdata.X+2))+(betdata.X+2)+1]=='x'){
+		        			k= k+1;
+		        		}
+		        		//Analyseende*/
+
+
+		        		//belegter Pixel mit zwei oder drei belegten Nachbarpixeln bleibt belegt
+		        		if (k == 2 || k == 3){
+		        			nextdata.puffer[(j-1)+(i-1)*(caldata.X+2)] = 'x';
+		        			k = 0;
+		        		}
+		        		//belegter Pixel mit mehr als drei belegten Nachbarpixeln wird frei
+		        		//belegter Pixel mit weniger als zwei belegten Nachbarpixeln wird frei
+		        		else{
+		        			nextdata.puffer[(j-1)+(i-1)*(caldata.X+2)] = '.';
+		        			k = 0;
+		        		}
+
+		        	}
+
+		       }
+
+		  };
 
 
 
+	//Visualisierung
+	for (int i=0; i<=(nextdata.Y+1); i++) {
+	        for (int j=0; j<=(nextdata.X+1); j++) {
+	            printf("%c", nextdata.puffer[j+i*(nextdata.X+2)]);
+	        }
+	        printf("\n");
+	};
 
-	}
-
-	//*/
-
-	return caldata;//später nextdata
+	return nextdata;//später nextdata
 }
 

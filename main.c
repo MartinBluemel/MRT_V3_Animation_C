@@ -33,6 +33,7 @@ int main(int argc, char *argv[])  {
     printf("daten.gesamtschritte: %d\n", daten.gesamtschritte);
     printf("daten.delay: %f\n", daten.delay);
 
+    //Visualisierung
     for (int i=0; i<=(daten.Y+1); i++) {
         for (int j=0; j<=(daten.X+1); j++) {
             printf("%c", daten.puffer[j+i*(daten.X+2)]);
@@ -40,27 +41,29 @@ int main(int argc, char *argv[])  {
         printf("\n");
     };
 
-    /*
-     *nur zum Testen
-     */
-    int out;
-    out = funadd(3, 5);
-    printf("%d\n", out);
-
-
 
     // print: daten.X = 100
     // print: daten.delay = 0.1
 
+    //Platzhalter
+    printf("\n");
+    printf("\n");
+
+
 
     // Leinwand initialisieren (in gfx.c, Aufgabe 4.4):
-    // init_pic(daten);
+    //init_pic(daten);
 
     // Schleife:
+    for (int i=1; i<=(daten.gesamtschritte); i++) {
+
         // Naechsten Animationsschritt berechnen (3.3, in engine.c):
     	//läuft, jetzt läufts
         daten = calculate_next_pic(daten);
-        printf("%c\n", daten.puffer[0]);
+
+        printf("\n");
+        printf("\n");
+
 
         // Bild darstellen (3.4, in gfx.c):
         // 
@@ -72,7 +75,8 @@ int main(int argc, char *argv[])  {
 
         // Pause zwischen einzelnen Bildern
 
-    // }
+
+    }
 
     // Puffer deallokieren
     free(daten.puffer);
