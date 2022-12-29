@@ -182,15 +182,15 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 
 		  };
 
-
+	nextdata.schritt ++; //Justus wars
 
 	//Visualisierung
-	for (int i=0; i<=(nextdata.Y+1); i++) {
+	/*for (int i=0; i<=(nextdata.Y+1); i++) {
 	        for (int j=0; j<=(nextdata.X+1); j++) {
 	            printf("%c", nextdata.puffer[j+i*(nextdata.X+2)]);
 	        }
 	        printf("\n");
-	};
+	};*/
 
 	return nextdata;//später nextdata
 }
