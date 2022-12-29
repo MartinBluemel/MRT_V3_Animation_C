@@ -6,8 +6,8 @@
 #include"config.h"    // Einlesen der Konfigurationsdatei (Aufgabe 4.2): einlesen()
 #include"gfx.h"       // Grafische Darstellung (Aufgabe 4.4): init_pic(), ausdruck()
 #include"engine.h"    // Berechnung der Animationsschritte (Aufgabe 4.3): calculate_next_pic()
-#include"ui.h"        // Nutzereingaben (Aufgabe 4.5): pause()
-
+#include "ui.h"        // Nutzereingaben (Aufgabe 4.5): pause()
+#include <math.h>
 
 
 //eventuell wieder erstzen mit void main(void)
@@ -22,9 +22,11 @@ int main(int argc, char *argv[])  {
       float delay; // Pause zwischen den Schritten
       char* puffer;
     */
-    struct Laufzeitdaten daten;
-    
+	struct Laufzeitdaten daten;
+
     daten = einlesen("settings-1.txt"); 
+    daten.p = 0;
+    int p = 0;
 
     printf("Eingelesene Daten: \n");
     printf("daten.X (Spalten): %d\n", daten.X);
@@ -32,52 +34,75 @@ int main(int argc, char *argv[])  {
     printf("daten.schritt: %d\n", daten.schritt);
     printf("daten.gesamtschritte: %d\n", daten.gesamtschritte);
     printf("daten.delay: %f\n", daten.delay);
+    printf("daten.p: %d\n", daten.p);
 
     //Visualisierung
-    for (int i=0; i<=(daten.Y+1); i++) {
-        for (int j=0; j<=(daten.X+1); j++) {
-            printf("%c", daten.puffer[j+i*(daten.X+2)]);
-        }
-        printf("\n");
-    };
+	for (int i=0; i<=(daten.Y+1); i++) {
+		for (int j=0; j<=(daten.X+1); j++) {
+			printf("%c", daten.puffer[j+i*(daten.X+2)]);
+		}
+		printf("\n");
+	};
 
 
-    // print: daten.X = 100
-    // print: daten.delay = 0.1
+	//Platzhalter
+	printf("\n");
+	printf("\n");
 
-    //Platzhalter
-    printf("\n");
-    printf("\n");
 
 
 
     // Leinwand initialisieren (in gfx.c, Aufgabe 4.4):
     //init_pic(daten);
+	grafik_init_window();
 
     // Schleife:
-    for (int i=1; i<=(daten.gesamtschritte); i++) {
+	int t = 1;
+    while(t < 2000)
+    {
+    	t++;
+    	//eigentlich soll daten.p verwendet werden aber da kommt es zu komischen werten nach der berechnung ...
 
-        // Naechsten Animationsschritt berechnen (3.3, in engine.c):
-    	//läuft, jetzt läufts
-        daten = calculate_next_pic(daten);
+    	//daten.p = userinput(daten.delay, p);
+    	//printf("daten.d: %d\n",daten.p);
 
-        printf("\n");
-        printf("\n");
+    	p = userinput(daten.delay, p);
+    	//printf("d: %d\n",p);
 
 
-        // Bild darstellen (3.4, in gfx.c):
-        // 
+    	if(daten.schritt < daten.gesamtschritte){
 
-        // Schleifenabbruch bei:
-        // - Taste q --> Funktion in ui.c
-        // - Gesamtschritte erreicht
-        // - Pausieren --> Funktion in ui.c
 
-        // Pause zwischen einzelnen Bildern
+			// Naechsten Animationsschritt berechnen (3.3, in engine.c):
+			//läuft, jetzt läufts
+			daten = calculate_next_pic(daten);
+
+			printf("Schritt %d\n",daten.schritt);
+			for (int i=0; i<=(daten.Y+1); i++) {
+						for (int j=0; j<=(daten.X+1); j++) {
+							printf("%c", daten.puffer[j+i*(daten.X+2)]);
+						}
+						printf("\n");
+				};
+
+			printf("\n");
+			printf("\n");
+
+			// Bild darstellen (3.4, in gfx.c):
+			//
+
+			// Schleifenabbruch bei:
+			// - Taste q --> Funktion in ui.c
+			// - Gesamtschritte erreicht
+			// - Pausieren --> Funktion in ui.c
+
+			// Pause zwischen einzelnen Bildern
+
+
+		}
 
 
     }
-
     // Puffer deallokieren
     free(daten.puffer);
     return 0;
