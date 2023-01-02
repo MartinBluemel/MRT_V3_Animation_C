@@ -24,7 +24,7 @@ int main(int argc, char *argv[])  {
     */
 	struct Laufzeitdaten daten = einlesen("settings-1.txt");
 
-    daten.p = 0;
+    //daten.p = 0;
     int p = 0;
 
     printf("Eingelesene Daten: \n");
@@ -56,17 +56,18 @@ int main(int argc, char *argv[])  {
 	grafik_init_window();
 
     // Schleife:
-	int t = 1;
-    while(t < 2000)
+
+    while(1)
     {
-    	t++;
+
     	//eigentlich soll daten.p verwendet werden aber da kommt es zu komischen werten nach der berechnung ...
 
-    	//daten.p = userinput(daten.delay, p);
+    	//daten.p = userinput(daten.delay, daten.p);
     	//printf("daten.d: %d\n",daten.p);
 
+    	//Nimmt Benutzereingaben entgegen und verzögert die bildausgabe um das entsprechende delay in der settings.txt
     	p = userinput(daten.delay, p);
-    	//printf("d: %d\n",p);
+    	printf("d: %d\n",p);
 
 
     	if(daten.schritt < daten.gesamtschritte){
