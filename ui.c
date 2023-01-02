@@ -32,10 +32,10 @@ int userinput(float delay, int p){
 		start = time(NULL) * 1000;
 	*/
 	int t= 0;
-	while(t<5){
+	while(t<1){
 		t++;
 		if(pp == 0){
-			switch(grafik_user_input(10)){
+			switch(grafik_user_input(1000)){
 				case Beenden: exit(0);
 
 				case Pause:{
@@ -49,7 +49,7 @@ int userinput(float delay, int p){
 		if(pp == 1){
 			//printf("Pause hält an\n");
 			while(pp==1){
-					switch(grafik_user_input(10)){
+					switch(grafik_user_input(1000)){
 						case Beenden: exit(0);
 
 						case Pause:{
