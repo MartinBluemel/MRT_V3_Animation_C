@@ -7,7 +7,8 @@
     int X, Y, schritt, gesamtschritte, p; // X: Spalte, Y: Zeile
     float delay; // Pause zwischen den Schritten
     char* puffer;
-}laufzeitdaten;
+}Laufzeitdaten;
+
 
 // Darstellung des Puffers (Zahlen sind Elemente des Puffers):
 //   __|-------X-------|_
