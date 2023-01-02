@@ -22,9 +22,8 @@ int main(int argc, char *argv[])  {
       float delay; // Pause zwischen den Schritten
       char* puffer;
     */
-	struct Laufzeitdaten daten;
+	struct Laufzeitdaten daten = einlesen("settings-1.txt");
 
-    daten = einlesen("settings-1.txt"); 
     daten.p = 0;
     int p = 0;
 
