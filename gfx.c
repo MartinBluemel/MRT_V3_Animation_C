@@ -44,11 +44,14 @@ void draw_pic(struct Laufzeitdaten daten) {
 	// Schleife ist identisch zu der Testschleife aus main.c aufgebaut
 	for (int i=0; i<=(daten.Y+1); i++) {
 	        for (int j=0; j<=(daten.X+1); j++) {
-	        	 printf("%c\n", daten.puffer[j+i*(daten.X+2)]);
+	        		//printf("%c\n", daten.puffer[j+i*(daten.X+2)]);
 	        	// if wert = x-> zeichnen, sonst weitergehen
 	        	if (daten.puffer[j+i*(daten.X+2)] == '.') {
 	        		grafik_paint_point ( j, i, Twine);
 	        	}
+	        	if (daten.puffer[j+i*(daten.X+2)] == 'x') {
+					grafik_paint_point ( j, i, Valhalla);
+				}
 	        
 	        }
 	        //printf("\n");

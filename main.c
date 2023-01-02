@@ -22,7 +22,7 @@ int main(int argc, char *argv[])  {
       float delay; // Pause zwischen den Schritten
       char* puffer;
     */
-	struct Laufzeitdaten daten = einlesen("settings-1.txt");
+	Laufzeitdaten daten = einlesen("settings-1.txt");
 
     //daten.p = 0;
     int p = 0;
@@ -52,8 +52,8 @@ int main(int argc, char *argv[])  {
 
 
     // Leinwand initialisieren (in gfx.c, Aufgabe 4.4):
-    //init_pic(daten);
-	grafik_init_window();
+    init_pic(daten);
+	//grafik_init_window();
 
     // Schleife:
 
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])  {
 
 			// Bild darstellen (3.4, in gfx.c):
 			//
-
+			draw_pic(daten);
 			// Schleifenabbruch bei:
 			// - Taste q --> Funktion in ui.c
 			// - Gesamtschritte erreicht

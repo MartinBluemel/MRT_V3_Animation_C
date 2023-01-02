@@ -21,7 +21,7 @@ int userinput(float delay, int p){
 
 
 
-	time_t endwait;
+	/*time_t endwait;
 	time_t start = time(NULL) * 1000;
 	time_t mseconds = (floor(delay * 1000)); // end loop after this time has elapsed
 
@@ -29,15 +29,17 @@ int userinput(float delay, int p){
 
 	while (start < endwait)
 	{
-		//printf("Pause: %d\n",pp);
 		start = time(NULL) * 1000;
-
+	*/
+	int t= 0;
+	while(t<5){
+		t++;
 		if(pp == 0){
 			switch(grafik_user_input(10)){
 				case Beenden: exit(0);
 
 				case Pause:{
-						//printf("Pause start\n");
+						printf("Pause Start\n");
 						pp = 1; //pause
 						break;
 				}
@@ -51,12 +53,12 @@ int userinput(float delay, int p){
 						case Beenden: exit(0);
 
 						case Pause:{
-								//printf("Pause stop\n");
+								printf("Pause Stop\n");
 								pp = 0; //pause
 								break;
 						}
 						case Schritt:
-							//printf("Schritt\n");
+							printf("Nächster Schritt\n");
 							return pp;
 							break;
 					}
