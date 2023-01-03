@@ -20,9 +20,6 @@
 
 // für Dantentyp-Laufzeitdaten:
 #include"newdata.h"
-
-// Fur was nochmal? --> CHECKEN!!
-#include <sys/stat.h>
 	 
 // Config und Dateiarbeit Funktionen
 
@@ -41,10 +38,10 @@ struct Laufzeitdaten einlesen(const char* filename) {
 
     // Fehler-Anzeige bei Oeffnen
     if (!input_file) {  // !ptr: true wenn ptr Nullpointer ist
-        perror("fopen"); // prints a descriptive error message
+        perror("Fehler beim Öffnen der Datei");
         exit(EXIT_FAILURE);
     }
-
+    
     // 1) Nummern aus Datai einlesen
     data=nummerneinlesen(input_file);
 
@@ -55,10 +52,10 @@ struct Laufzeitdaten einlesen(const char* filename) {
 
     // 3) Meldung falls Puffer nicht zentrierbar ist:
     if(data.X%2!=zwischenspeicher.breitezs%2 || data.Y%2!=zwischenspeicher.hoehezs%2) {
-        printf("Das Bild ist nicht zentrierbar!\n");
+        fprintf(stderr, "\nDas Bild ist nicht zentrierbar/\n\n");
     };
-
-    // 4) Zwischenspeicher zentrieren:
+    
+    // ) Zwischenspeicher zentrieren:
     data.puffer=zentrieren(zwischenspeicher, data.X, data.Y);
 
     return data;
@@ -68,10 +65,10 @@ struct Laufzeitdaten nummerneinlesen(FILE* fileptr) {
 
     struct Laufzeitdaten data;
 
-    char str1[20]; // variable[string_lenght]
+    char str1[20]; //
 
     while(1) {
-        // fscanf(fileptr, "%s %f\n", str1, &number); // Warum &str2 und nicht str2??
+
         fscanf(fileptr, "%s", str1);
 
         if(strcmp(&str1, "Zeilen:")==0) {
@@ -102,7 +99,7 @@ struct Laufzeitdaten nummerneinlesen(FILE* fileptr) {
     return data;
 }
 
-struct eingelesenerpuffer puffereinlesen(int X, int Y, FILE* fileptr) { // ACHTUNG: Wenn Punkt an erster Stelle ist wird erste Zeile falsch eingelesen?????
+struct eingelesenerpuffer puffereinlesen(int X, int Y, FILE* fileptr) {
 
     struct eingelesenerpuffer zs;
 
@@ -137,9 +134,12 @@ struct eingelesenerpuffer puffereinlesen(int X, int Y, FILE* fileptr) { // ACHTU
     }
 
     zs.hoehezs = i+1;
+    
+    printf("Höhe Zwischenspeicher: %d\n", zs.hoehezs);
+    printf("Breite Zwischenspeicher: %d\n", zs.breitezs);
 
     // 2.6 Einlesespeicher deallokieren
-    // free(einlesespeicher);
+    free(einlesespeicher);
 
     return zs;
 }
@@ -149,8 +149,6 @@ char* zentrieren(struct eingelesenerpuffer zs, int X, int Y) {
     // Rand berücksichtigen:
     X=X+2;
     Y=Y+2;
-
-    // Meldung falls das Bild nicht zentriert werden kann:
 
     // Speicher für Puffer allokieren:
     char *ausgabe=(char*)malloc(((X)*(Y))*sizeof(char));
@@ -168,14 +166,10 @@ char* zentrieren(struct eingelesenerpuffer zs, int X, int Y) {
             }
 
             else {
-                // printf("%d %d\n", j+i*(x), index_zwischenspeicher);
                 ausgabe[j+i*X]=zs.ptrzs[index_zwischenspeicher];
                 index_zwischenspeicher=index_zwischenspeicher+1;
             }
-        
-        // printf("%c", ausgabe[j+i*X]);
         }
-        // printf("\n");
     }
 
     return ausgabe;
