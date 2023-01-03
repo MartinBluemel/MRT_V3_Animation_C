@@ -25,7 +25,7 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 	nextdata.delay = caldata.delay;
 	nextdata.puffer = caldata.puffer;
 
-	//Berechnungsvariable
+	//Berechnungsvariable, Puffer nochmal um 2 Zeilen und Spalten erweitert
 	struct Laufzeitdaten betdata;
 	betdata.X = caldata.X+2;
 	betdata.Y = caldata.Y+2;
@@ -34,7 +34,7 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 	betdata.delay = caldata.delay;
 	betdata.puffer = malloc(((betdata.X+2)*(betdata.Y+2))*sizeof(char));
 
-	//Puffer nochmal um einen Rand '.' erweitern
+	//Berechnungspuffer mit '.' füllen
 	for (int i=0; i<=(betdata.Y+1); i++) {
 		        for (int j=0; j<=(betdata.X+1); j++) {
 		        	betdata.puffer[j+i*(betdata.X+2)] = '.';
@@ -42,7 +42,7 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 
 		    };
 
-	/*Visualisierung
+	/*Visualisierung wenn nötig
 	for (int i=0; i<=(betdata.Y+1); i++) {
 			        for (int j=0; j<=(betdata.X+1); j++) {
 			            printf("%c", betdata.puffer[j+i*(betdata.X+2)]);
@@ -54,7 +54,7 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 	 printf("\n");
 	 //*/
 
-	 //übergebenen Puffer in erweiterten einfügen
+	 //übergebener Puffer in erweiterten Puffer einfügen
 	 for (int i=0; i<=(nextdata.Y+1); i++) {
 		        for (int j=0; j<=(nextdata.X+1); j++) {
 		        	betdata.puffer[(j+1)+(i+1)*(betdata.X+2)] = nextdata.puffer[j+i*(caldata.X+2)];
@@ -62,7 +62,7 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 
 		    };
 
-	 /*Visualisierung
+	 /*Visualisierung wenn nötig
 	 for (int i=0; i<=(betdata.Y+1); i++) {
 	 			        for (int j=0; j<=(betdata.X+1); j++) {
 	 			            printf("%c", betdata.puffer[j+i*(betdata.X+2)]);
@@ -74,7 +74,8 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 	 printf("\n");
 	 */
 
-	//*Berechnung
+	//Pixelweise Berechnung
+	// k = Counter für belegte benachbarte Pixel
 	int k = 0;
 
 	for (int i=1; i<=(betdata.Y); i++) {
@@ -83,7 +84,7 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 		        	//wenn Pixel leer
 		        	if(betdata.puffer[j+i*(betdata.X+2)]=='.'){
 
-		        		//Analyse der umliegenden Felder
+		        		//Analyse der umliegenden Pixel
 		        		//Ecke oben links
 		        		if(betdata.puffer[(j+i*(betdata.X+2))-(betdata.X+3)]=='x'){
 		        			k= k+1;
@@ -125,10 +126,9 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 		        			k = 0;
 		        		}
 		        	}
-		        	//alle Zeichen die kein Punkt sind werden als x gesehen
+		        	//alle Zeichen die kein Punkt sind werden als x gesehen und behandelt
 		        	else {
-		        		///*
-		        		//Analyse der umliegenden Felder
+		        		//Analyse der umliegenden Pixel
 		        		//Ecke oben links
 		        		if(betdata.puffer[(j+i*(betdata.X+2))-(betdata.X+2)-1]=='x'){
 		        			k= k+1;
@@ -161,7 +161,7 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 		        		if(betdata.puffer[(j+i*(betdata.X+2))+(betdata.X+2)+1]=='x'){
 		        			k= k+1;
 		        		}
-		        		//Analyseende*/
+		        		//Analyseende
 
 
 		        		//belegter Pixel mit zwei oder drei belegten Nachbarpixeln bleibt belegt
@@ -182,9 +182,10 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 
 		  };
 
-	nextdata.schritt ++; //Justus wars
+	//hochzählen des Berechnungsschrittes vor der Rückgabe
+	nextdata.schritt ++;
 
-	//Visualisierung
+	//Visualisierung wenn nötig
 	/*for (int i=0; i<=(nextdata.Y+1); i++) {
 	        for (int j=0; j<=(nextdata.X+1); j++) {
 	            printf("%c", nextdata.puffer[j+i*(nextdata.X+2)]);
@@ -192,6 +193,7 @@ struct Laufzeitdaten calculate_next_pic(struct Laufzeitdaten caldata){
 	        printf("\n");
 	};*/
 
-	return nextdata;//später nextdata
+	//Rückgabe des berechneten Schrittes an die Main-Schleife
+	return nextdata;
 }
 
