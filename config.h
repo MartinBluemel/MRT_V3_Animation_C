@@ -9,4 +9,11 @@
 
 struct Laufzeitdaten einlesen();
 
+// wird in config.c zum Einlesen verwendet
+struct eingelesenerpuffer {
+    char* ptrzs;
+    int hoehezs, breitezs;
+}eingelesenerpuffer;
+
+
 #endif //CONFIG_HH

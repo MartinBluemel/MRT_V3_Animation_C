@@ -18,10 +18,4 @@
 // _ 22 23 24 25 26 27 28
 //   29 30 31 32 33 34 35
 
-// Für config.c
-struct eingelesenerpuffer {
-    char* ptrzs;
-    int hoehezs, breitezs;
-};
-
 #endif //NEWDATA_HH
