@@ -73,7 +73,6 @@ int main(int argc, char *argv[])  {
 		// Pause zwischen einzelnen Bildern
 
     	p = userinput(daten.delay, p);
-    	printf("%d\n",p);
 
     	if(daten.schritt < daten.gesamtschritte){
 

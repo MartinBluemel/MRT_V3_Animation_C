@@ -36,7 +36,7 @@ int userinput(float delay, int p){
 
 	if(pp == 1){
 		while(pp==1){
-			printf("Pause hält an\n");
+			//printf("Pause hält an\n");
 			test = grafik_user_input(d);
 				switch(test){
 					case Beenden: exit(0);
@@ -47,7 +47,7 @@ int userinput(float delay, int p){
 						break;
 					}
 					case Schritt:
-						printf("Nächster Schritt\n");
+						//printf("Nächster Schritt\n");
 						return pp;
 						break;
 				}
