@@ -52,7 +52,7 @@ struct Laufzeitdaten einlesen(const char* filename) {
 
     // 3) Meldung falls Puffer nicht zentrierbar ist:
     if(data.X%2!=zwischenspeicher.breitezs%2 || data.Y%2!=zwischenspeicher.hoehezs%2) {
-        fprintf(stderr, "\nDas Bild ist nicht zentrierbar/\n\n");
+        fprintf(stderr, "\nDas Bild ist nicht zentrierbar!\n\n");
     };
     
     // ) Zwischenspeicher zentrieren:
@@ -135,9 +135,6 @@ struct eingelesenerpuffer puffereinlesen(int X, int Y, FILE* fileptr) {
 
     zs.hoehezs = i+1;
     
-    printf("Höhe Zwischenspeicher: %d\n", zs.hoehezs);
-    printf("Breite Zwischenspeicher: %d\n", zs.breitezs);
-
     // 2.6 Einlesespeicher deallokieren
     free(einlesespeicher);
 
