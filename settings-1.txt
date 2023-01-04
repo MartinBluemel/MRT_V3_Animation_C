@@ -2,10 +2,9 @@ Zeilen: 100
 Spalten: 100
 Schritt: 0
 Schritte: 15
-Pause: 0.5 s
+Pause: 0.1 s
 
 Animations-Puffer:
 ..x....x..
 xx.xxxx.xx
-..x....x..
 ..x....x..

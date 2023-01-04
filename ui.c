@@ -17,55 +17,41 @@
 int userinput(float delay, int p){
 
 	int pp = p;
-	//printf("Delay: %d\n",delay);
+	int d = floor(delay * 1000);
+	user_input_t test;
 
+	if(pp == 0){
+		test = grafik_user_input(d);
+		switch(test){
 
+			case Beenden: exit(0);
 
-	/*time_t endwait;
-	time_t start = time(NULL) * 1000;
-	time_t mseconds = (floor(delay * 1000)); // end loop after this time has elapsed
+			case Pause:{
+					printf("Pause Start\n");
+					pp = 1; //pause
+					break;
+			}
+		}
+	}
 
-	endwait = start + mseconds;
+	if(pp == 1){
+		while(pp==1){
+			printf("Pause hält an\n");
+			test = grafik_user_input(d);
+				switch(test){
+					case Beenden: exit(0);
 
-	while (start < endwait)
-	{
-		start = time(NULL) * 1000;
-	*/
-	int t= 0;
-	while(t<1){
-		t++;
-		if(pp == 0){
-			switch(grafik_user_input(1000)){
-				case Beenden: exit(0);
-
-				case Pause:{
-						printf("Pause Start\n");
-						pp = 1; //pause
+					case Pause:{
+						printf("Pause Stop\n");
+						pp = 0; //pause
+						break;
+					}
+					case Schritt:
+						printf("Nächster Schritt\n");
+						return pp;
 						break;
 				}
 			}
 		}
-
-		if(pp == 1){
-			//printf("Pause hält an\n");
-			while(pp==1){
-					switch(grafik_user_input(1000)){
-						case Beenden: exit(0);
-
-						case Pause:{
-								printf("Pause Stop\n");
-								pp = 0; //pause
-								break;
-						}
-						case Schritt:
-							printf("Nächster Schritt\n");
-							return pp;
-							break;
-					}
-				}
-			}
-
-	}
-
 	return pp;
 }
