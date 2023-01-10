@@ -17,13 +17,7 @@ int main(int argc, char *argv[])  {
     // Rueckgabe der Struktur "daten" mit den noetigen Informationen
     // Rueckgabe des Animationspuffers mit Raendern
 
-	/* Kann das weg?
-	struct Laufzeitdaten {
-	int X, Y, schritt, gesamtschritte; // X: Spalte, Y: Zeile
-	float delay; // Pause zwischen den Schritten
-	char* puffer;
-    */
-
+	
 	// initialisiere und befülle Daten aus der vorgegebenen Settings-Datei
 	Laufzeitdaten daten = einlesen("settings-1.txt");
 
@@ -40,19 +34,6 @@ int main(int argc, char *argv[])  {
     printf("daten.delay: %f\n", daten.delay);
     printf("daten.p: %d\n", daten.p);
     */
-
-    //Visualisierung - 0. Berechnungsschritt in der Konsole
-    // für debugging
-	/*for (int i=0; i<=(daten.Y+1); i++) {
-		for (int j=0; j<=(daten.X+1); j++) {
-			printf("%c", daten.puffer[j+i*(daten.X+2)]);
-		}
-		printf("\n");
-	};
-		//Platzhalter
-		printf("\n");
-		printf("\n");
-	*/
 
     // Leinwand initialisieren (in gfx.c, Aufgabe 4.4):
     init_pic(daten);
@@ -77,8 +58,7 @@ int main(int argc, char *argv[])  {
     	if(daten.schritt < daten.gesamtschritte){
 
 
-			// Naechsten Animationsschritt berechnen (3.3, in engine.c):
-			//läuft, jetzt läufts
+			// Naechsten Animationsschritt berechnen (4.3, in engine.c):
 			daten = calculate_next_pic(daten);
 
 			//Visualisierung - 1. bis N = daten.gesamtschritte -ter Berechnungsschritt in der Konsole
